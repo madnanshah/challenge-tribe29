@@ -1,0 +1,14 @@
+@each $key, $val in $colors {
+    .svg-logo-#{$key} {
+        width: 47px;
+        fill: $val;
+    }
+}
+
+@each $key, $val in $colors {
+    .svg-title-#{$key} {
+        fill: $val;
+        width: 90px;
+        padding-left: $base-padding;
+    }
+}

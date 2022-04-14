@@ -1,0 +1,5 @@
+Options +FollowSymLinks
+RewriteEngine On
+RewriteCond $1 !^(assets/css)
+RewriteCond $1 !^(assets/js)
+RewriteRule ^(.*)$ index.php [NC,L]

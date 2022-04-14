@@ -1,0 +1,22 @@
+{
+  "name": "checkmk-challenge",
+  "version": "0.0.1",
+  "description": "Web development coding challenge.",
+  "author": "Tribe29 GmbH",
+  "devDependencies": {
+    "browser-sync": "^2.27.7",
+    "browser-sync-webpack-plugin": "^2.3.0",
+    "laravel-mix": "^6.0.43",
+    "postcss": "^8.4.8",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.49.9",
+    "sass-loader": "^12.6.0",
+    "webpack": "^5.70.0"
+  },
+  "sasslintConfig": ".sass-lint.yml",
+  "scripts": {
+    "dev": "mix",
+    "watch": "mix watch",
+    "prod": "mix --production"
+  }
+}

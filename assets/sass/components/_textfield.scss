@@ -1,0 +1,15 @@
+@each $key, $val in $colors {
+    .txtfld-#{$key}{
+        width: 96%;
+        background-color: $val;
+        font-size: $font-size-sm;
+        padding: $base-padding $base-padding;
+        margin: $base-margin 0;
+        border: none;
+        border-radius: $base-border-radius;
+        cursor: pointer;
+        &:hover{
+            background-color: lighten($val,5)
+        }
+    }
+}
