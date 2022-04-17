@@ -6,10 +6,12 @@
   "devDependencies": {
     "browser-sync": "^2.27.7",
     "browser-sync-webpack-plugin": "^2.3.0",
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.1.0",
     "laravel-mix": "^6.0.43",
     "postcss": "^8.4.8",
     "resolve-url-loader": "^5.0.0",
-    "sass": "^1.49.9",
+    "sass": "^1.50.0",
     "sass-loader": "^12.6.0",
     "webpack": "^5.70.0"
   },
@@ -18,5 +20,16 @@
     "dev": "mix",
     "watch": "mix watch",
     "prod": "mix --production"
-  }
+  },
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madnanshah/challenge-tribe29.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/madnanshah/challenge-tribe29/issues"
+  },
+  "homepage": "https://github.com/madnanshah/challenge-tribe29#readme"
 }

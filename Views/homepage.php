@@ -35,13 +35,13 @@
                     <p class="text-white mt-2 mb-3">Join thousands of sysadmins and receive free professional tips and tricks to help you monitor your IT-infrastructure.</p>
                     <form class="mb-3" action="subscribe" method="post">
                         <label class="text-white" for="name">Name</label>
-                        <input class="txtfld-white text-grey" id="name" name="name">
+                        <input  type="text" class="txtfld-white text-grey" id="name" name="name" value="<?php echo isset($_SESSION['response']) ? $_SESSION['response']['post']['name'] : ''; ?>" required>
                         <label class="text-white" for="email">Email</label>
-                        <input class="txtfld-white" id="email" name="email">
+                        <input type="email" class="txtfld-white" id="email" name="email" value="<?php echo isset($_SESSION['response']) ? $_SESSION['response']['post']['email'] : ''; ?>" required>
                         <input type="submit" class="btn-green text-grey form__submit" value="Subscribe"> 
                         <?php
-                            echo isset($_SESSION['status']) ? ($_SESSION['status']['success'] ? '<span class = "pl-2 p2-1 text-green" >':'<span class = "pl-2 p2-1 text-error" >').$_SESSION['status']['message'] : '';
-                            unset($_SESSION['status']);
+                            echo isset($_SESSION['response']) ? ($_SESSION['response']['success'] ? '<span class = "pl-2 p2-1 text-green" >':'<span class = "pl-2 p2-1 text-error" >').$_SESSION['response']['message'] : '';
+                            unset($_SESSION['response']);
                         ?> </span>
                     </form>
                 </div>

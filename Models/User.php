@@ -12,20 +12,32 @@ class User
         $this->email = $email;
     }
 
-    public function validate()
-    {
-        $email = $this->email;
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            return ['success'=>false, 'message'=>'Invalid email'];
+    public function subscribe(){        
+        try {
+            $line = [date('ymdHm'),$this->name,$this->email];
+            $handle = fopen('newsletter.csv', 'a');
+            $result = fputcsv($handle, $line,'|');
+            fclose($handle);
+            return $result;
+        } catch (\Throwable $th) {
+            return false;
         }
+    }
 
-        $fcsv   = file('newsletter.csv');
-        foreach ($fcsv as $key => $value) {
-            $temp = explode('|', $value);
-            if (trim($temp[2]) == $email) {
-                return ['success'=>false, 'message'=>'User already registered!'];
-            }
+    public static function allSubscribers()
+    {
+        $handle = file('newsletter.csv');
+        for ($i=0; $i < sizeof($handle); $i++) { 
+            $subscribers[$i] =  explode('|', $handle[$i]);
         }
-        return ['success'=>true, 'message'=>'Data is valid'];
+        return $subscribers;
+    }
+
+    public function getName(){
+        return $this->name;
+    }
+
+    public function getEmail(){
+        return $this->email;
     }
 }

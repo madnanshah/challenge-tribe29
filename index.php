@@ -2,11 +2,9 @@
 session_start();
 require 'config/init.php';
 
-$route = str_replace('', "", $_SERVER['REQUEST_URI']);
+$route = str_replace('/challenge-tribe29/', "", $_SERVER['REQUEST_URI']);
 
-$route = explode('/', $route);
-
-switch ($route[2]??'') {
+switch ($route??'') {
 
     case '':
     case 'home':
@@ -15,13 +13,16 @@ switch ($route[2]??'') {
         break;
 
     case 'subscribe':
-        $data = UserController::subscribe($_POST);
-        print_r($data);
+        return UserController::subscribe($_POST);
         break;
 
     case 'all-subscribers':
-        $subscribers =  UserController::allSubscribers();
+        $subscribers =  UserController::getAllSubscribers();
         print(Json_encode($subscribers));
+        break;
+    
+    case 'practice':
+        include 'Views/practice.php';
         break;
 
     default:

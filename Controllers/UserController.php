@@ -1,37 +1,34 @@
 <?php
 
 require_once 'Models/User.php';
+require_once 'Validations/UserValidation.php';
 
 class UserController{
-    
+
     public static function subscribe($data)
     {
         $user = new User($data['name'],$data['email']);
-        $validated = $user->validate();
-
-        if ($validated['success']){
-            try {
-                $line = [date('ymdHm'),$data['name'],$data['email']];
-                $handle = fopen("newsletter.csv", "a");
-                fputcsv($handle, $line,'|');
-                fclose($handle);
-                $_SESSION['status'] = ['success'=>true, 'message'=>'Subscribed successfully'];
-            } catch (\Throwable $th) {
-                $_SESSION['status'] = ['success'=>false, 'message'=>'Something went wrong'];
+        $validation = new UserValidation();
+        $validated = $validation->subscribe($user);
+        if($validated['success']){
+            if($user->subscribe()){
+                $response = ['success'=>true, 'message'=>'Subscribed successfully'];
             }
+            else{
+                $response = ['success'=>false, 'message'=>'Something went wrong'];
+            }           
         }else{
-            $_SESSION['status'] = $validated;
+            $response = $validated;
         }
+        $response['post'] = $data;
+        print_r($response);
+        $_SESSION['response'] = $response;
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit();
     }
 
-    public static function allSubscribers()
+    public static function getAllSubscribers()
     {
-        $data = file('newsletter.csv');
-        for ($i=0; $i < sizeof($data); $i++) { 
-            $data[$i] =  explode('|', $data[$i]);
-        }
-        return $data;
+        return User::allSubscribers();
     }
 }
